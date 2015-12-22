@@ -6,9 +6,11 @@ This contains the following tools:
 - snippet-extraction tool from XML data
 - layout-stats tool from XML data
 - plot tool to plot statistics gathered by the layout tool
+- score tool to rate images (good, bad, ugly)
 
 ## requirements
-Hardware: each modern PC should work fine, the snippet-extraction-tool and the layout-stats-tool might need more than 8gb RAM. 
+Hardware: each modern PC should work fine, the snippet-extraction-tool and the layout-stats-tool might need (depending on the amount of data and size of images) 
+more than 8gb RAM. 
 Software: 
 * Python 2.x (>= 2.7)
 
