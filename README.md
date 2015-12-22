@@ -19,3 +19,6 @@ For the Python-tools the following python-Packages are required:
 * OpenCV 2.4.x
 * sklearn
 * progressbar
+
+For the score tool:
+* Qt 4.x
