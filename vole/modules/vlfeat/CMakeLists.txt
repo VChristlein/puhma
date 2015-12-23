@@ -53,9 +53,6 @@ vole_compile_library(
 	"vl/svmdataset"
 	"vl/svm"
 	"vl/vlad"
-	"wrapper/sdcasolver"
-	"wrapper/sgdsolver"
-	"wrapper/svm_solver"
 
 	"vole_quickshift.h"
 	"vole_quickshift.cpp"

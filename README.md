@@ -35,5 +35,14 @@ Version 0.5 is currently not creating the same output XML files (we are working 
 annotated snippets right away. Furthermore, the automatic word recognition handling is much simplified. It is also much more flexible than before.
 
 ### Installation
-The annotation tool uses some functionality of the vole-framework which also serves as the base module. So call cmake with vole
-and add as additional modules 'common', 'annotated' and 'attributes'.  
+Note: currently only tested under Linux, but should work without problems also under windows (there you need a compiler liker mingw or MVC).
+
+The annotation tool uses some functionality of the vole-framework which also serves as the base module. 
+Building steps with cmake:
+* call ccmake with the 'vole/core' folder
+* add under 'VOLE_MODULE_DIRECTORIES': 'vole/core' and one of the annotate-folders  
+* set all new targets to ON (Puhma_Common, Puhma_Attributes, Puhma_Annotate_Gui, Vole_VlLFeat)
+* toggle to advanced mode [t], and add '-std=c++11' to the CXX_FLAGS
+* make sure that boost and opencv paths are set correctly
+* configure [c] and generate [g] make files and quit [q] ccmake
+* call 'make' (or make -j5 for 5 threads)
