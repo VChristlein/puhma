@@ -22,3 +22,18 @@ For the Python-tools the following python-Packages are required:
 
 For the score tool:
 * Qt 4.x
+
+For the annotation tool:
+* Qt 4.x
+* OpenCV 2.4.x
+* Boost > v1.49
+
+## Annotation Tool
+For compatibility reasons there are currently two different versions, 0.3 contains the annotation tool as it was used in the project (plus an
+automatic word recognition).The XML files which were created from this tool are used in the python-tools. 
+Version 0.5 is currently not creating the same output XML files (we are working on this), however it has support for extracting
+annotated snippets right away. Furthermore, the automatic word recognition handling is much simplified. It is also much more flexible than before.
+
+### Installation
+The annotation tool uses some functionality of the vole-framework which also serves as the base module. So call cmake with vole
+and add as additional modules 'common', 'annotated' and 'attributes'.  
