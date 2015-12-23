@@ -1,0 +1,762 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1024</width>
+    <height>840</height>
+   </rect>
+  </property>
+  <property name="focusPolicy">
+   <enum>Qt::WheelFocus</enum>
+  </property>
+  <property name="windowTitle">
+   <string>ImageAnnotation</string>
+  </property>
+  <property name="dockNestingEnabled">
+   <bool>true</bool>
+  </property>
+  <property name="dockOptions">
+   <set>QMainWindow::AllowNestedDocks|QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks</set>
+  </property>
+  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1024</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionShortcutHelp"/>
+   </widget>
+   <widget class="QMenu" name="menuMenu">
+    <property name="title">
+     <string>&amp;Database</string>
+    </property>
+    <addaction name="actionNewDatabase"/>
+    <addaction name="actionOpenDatabase"/>
+    <addaction name="actionSaveDatabase"/>
+    <addaction name="actionSaveDatabaseAs"/>
+    <addaction name="separator"/>
+    <addaction name="actionLoadSnippets"/>
+    <addaction name="actionSaveSnippetsAs"/>
+    <addaction name="separator"/>
+    <addaction name="actionQuit"/>
+   </widget>
+   <widget class="QMenu" name="menuRecog">
+    <property name="title">
+     <string>&amp;Recognition</string>
+    </property>
+    <addaction name="actionExtractSnippets"/>
+    <addaction name="actionPrepare"/>
+    <!--<addaction name="actionLabelEmbed"/>
+    <addaction name="actionFisherVector"/>
+    <addaction name="actionAttributeSpace"/>
+    <addaction name="actionCommonSub"/>-->
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>&amp;Edit</string>
+    </property>
+    <addaction name="actionCreateRectangle"/>
+    <addaction name="actionCreatePolygon"/>
+    <addaction name="separator"/>
+    <addaction name="actionAddObject"/>
+    <addaction name="actionCopyObj"/>
+    <addaction name="actionPasteObj"/>
+    <addaction name="actionRemoveObj"/>
+    <addaction name="separator"/>
+    <addaction name="actionZoomIn"/>
+    <addaction name="actionZoomOut"/>
+    <addaction name="separator"/>
+    <addaction name="actionSetAnnoOptions"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>&amp;View</string>
+    </property>
+    <addaction name="actionShowImageFileBrowser"/>
+    <addaction name="actionShowObjectProperties"/>
+    <addaction name="actionShowXmlPreview"/>
+    <addaction name="actionShowSnippetMenu"/>
+   </widget>
+   <addaction name="menuMenu"/>
+   <addaction name="menuRecog"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuView"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QDockWidget" name="xmlDockWidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="toolTip">
+    <string>the xml annotation file</string>
+   </property>
+   <property name="features">
+    <set>QDockWidget::AllDockWidgetFeatures</set>
+   </property>
+   <property name="windowTitle">
+    <string>&amp;XML Preview</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="xmlDockWidgetContents">
+    <layout class="QVBoxLayout">
+     <item>
+      <layout class="QHBoxLayout">
+       <item>
+        <widget class="QTextEdit" name="xmlTextEdit">
+         <property name="toolTip">
+          <string>Zeigt das XML-Annotation File (ohne Header und Footer)</string>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="snippetDockWidget">
+   <property name="toolTip">
+    <string>Adjust snippets</string>
+   </property>
+   <property name="features">
+    <set>QDockWidget::AllDockWidgetFeatures</set>
+   </property>
+   <property name="windowTitle">
+    <string/>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QCheckBox" name="wordRecognitionCheckBox">
+         <property name="text">
+          <string>Word Recognition Mode</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="Line" name="line">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_7">
+           <item>
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>Annotation</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTableWidget" name="snippetSelectionTableWidget">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>100</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::Panel</enum>
+             </property>
+             <property name="midLineWidth">
+              <number>0</number>
+             </property>
+             <property name="selectionMode">
+              <enum>QAbstractItemView::SingleSelection</enum>
+             </property>
+             <property name="gridStyle">
+              <enum>Qt::SolidLine</enum>
+             </property>
+             <property name="rowCount">
+              <number>20</number>
+             </property>
+             <property name="columnCount">
+              <number>1</number>
+             </property>
+             <attribute name="horizontalHeaderVisible">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="verticalHeaderVisible">
+              <bool>false</bool>
+             </attribute>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <row/>
+             <column/>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_5">
+           <item>
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>Current Snippet</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTextEdit" name="snippetTextEdit">
+             <property name="toolTip">
+              <string>Write a snippet, placeholders (s.below) will be replaced by its real values</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Expanding</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>54</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Possible placeholders: %id, %url, %width, %height, &lt;/p&gt;&lt;p&gt;%zone_snippet, %points, %rpoints&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <widget class="QLabel" name="valLabel">
+           <property name="text">
+            <string>%val</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="valLineEdit"/>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="imgDockWidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="features">
+    <set>QDockWidget::AllDockWidgetFeatures</set>
+   </property>
+   <property name="windowTitle">
+    <string>Ima&amp;ges in Data Base</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="imgDockWidgetContents">
+    <layout class="QVBoxLayout">
+     <item>
+      <widget class="QTreeWidget" name="imgTreeWidget">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
+       </property>
+       <property name="selectionMode">
+        <enum>QAbstractItemView::ExtendedSelection</enum>
+       </property>
+       <property name="indentation">
+        <number>20</number>
+       </property>
+       <property name="uniformRowHeights">
+        <bool>true</bool>
+       </property>
+       <property name="sortingEnabled">
+        <bool>false</bool>
+       </property>
+       <column>
+        <property name="text">
+         <string>Files</string>
+        </property>
+       </column>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout">
+       <item>
+        <spacer>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="addImgButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/resources/documents_add.png</normaloff>:/resources/documents_add.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="delImgButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/resources/documents_remove.png</normaloff>:/resources/documents_remove.png</iconset>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QDockWidget" name="objDockWidget">
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="objDockWidgetContents_2">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <widget class="QTableWidget" name="objTableWidget"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <action name="actionOpenDatabase">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/resources/folder_classic_opened.png</normaloff>:/resources/folder_classic_opened.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Open Database</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionSaveDatabase">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/resources/save.png</normaloff>:/resources/save.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Save Database</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>&amp;Quit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionSaveDatabaseAs">
+   <property name="text">
+    <string>Save Database &amp;As ...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
+  <action name="actionPrepare">
+   <property name="text">
+    <string>&amp;Prepare ...</string>
+   </property>
+  </action>
+  <action name="actionShortcutHelp">
+   <property name="text">
+    <string>&amp;Shortcuts</string>
+   </property>
+  </action>
+  <action name="actionCopyObj">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Copy Object</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionPasteObj">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Paste Object</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+V</string>
+   </property>
+  </action>
+  <action name="actionExtractImages">
+   <property name="text">
+    <string>&amp;Extract Images</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+E</string>
+   </property>
+  </action>
+  <action name="actionShowXmlPreview">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Show XML Preview</string>
+   </property>
+   <property name="toolTip">
+    <string>Show Image Properties</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionShowImageFileBrowser">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Image File Browser</string>
+   </property>
+   <property name="iconText">
+    <string>Image File Browser</string>
+   </property>
+   <property name="toolTip">
+    <string>Show Image File Browser</string>
+   </property>
+  </action>
+  <action name="actionShowObjectProperties">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Object Properties</string>
+   </property>
+   <property name="toolTip">
+    <string>Show Object Properties</string>
+   </property>
+  </action>
+  <action name="actionRemoveProperty">
+   <property name="text">
+    <string>Remove Property (column)</string>
+   </property>
+   <property name="toolTip">
+    <string>removes the selected property</string>
+   </property>
+  </action>
+  <action name="actionCreateRectangle">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/resources/rectangle2.png</normaloff>:/resources/rectangle2.png</iconset>
+   </property>
+   <property name="text">
+    <string>Cr&amp;eate Rectangle</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::WindowShortcut</enum>
+   </property>
+  </action>
+  <action name="actionCreatePolygon">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/resources/polygon_blue.png</normaloff>:/resources/polygon_blue.png</iconset>
+   </property>
+   <property name="text">
+    <string>Create Po&amp;lygon</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionRemoveObj">
+   <property name="text">
+    <string>&amp;Remove Object</string>
+   </property>
+  </action>
+  <action name="actionZoomIn">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/resources/zoom_in.png</normaloff>:/resources/zoom_in.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Zoom In</string>
+   </property>
+  </action>
+  <action name="actionZoomOut">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/resources/zoom_out.png</normaloff>:/resources/zoom_out.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom &amp;Out</string>
+   </property>
+  </action>
+  <action name="actionPropertydialog">
+   <property name="text">
+    <string>propertydialog</string>
+   </property>
+   <property name="shortcut">
+    <string>Space</string>
+   </property>
+  </action>
+  <action name="actionBrowsingMode">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/resources/cursor_arrow.png</normaloff>:/resources/cursor_arrow.png</iconset>
+   </property>
+   <property name="text">
+    <string>BrowsingMode</string>
+   </property>
+   <property name="toolTip">
+    <string>Sets the browsing mode</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="actionAddObject">
+   <property name="text">
+    <string>&amp;Add Object</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionSaveOntologyAs">
+   <property name="text">
+    <string>Save Ontology As ...</string>
+   </property>
+  </action>
+  <action name="actionLoadOntology">
+   <property name="text">
+    <string>&amp;Load Ontology</string>
+   </property>
+  </action>
+  <!--<action name="actionLabelEmbed">
+   <property name="text">
+    <string>&amp;LabelEmbed ...</string>-
+   </property>
+  </action>-->
+  <action name="actionNewDatabase">
+   <property name="text">
+    <string>&amp;New Database</string>
+   </property>
+  </action>
+  <!--<action name="actionFisherVector">
+   <property name="text">
+    <string>&amp;Fisher Vector...</string>
+   </property>
+  </action>
+  <action name="actionAttributeSpace">
+   <property name="text">
+    <string>&amp;Attri.-Space...</string>
+   </property>
+  </action>
+  <action name="actionCommonSub">
+   <property name="text">
+    <string>&amp;Common Subspace...</string>
+   </property>
+  </action>-->
+  <action name="actionRecognition">
+   <property name="text">
+    <string>Recognition Select...</string>
+   </property>
+  </action>
+  <action name="actionLoadSnippets">
+   <property name="text">
+    <string>&amp;Load Snippets</string>
+   </property>
+  </action>
+  <action name="actionSaveSnippetsAs">
+   <property name="text">
+    <string>Sa&amp;ve Snippets As ...</string>
+   </property>
+  </action>
+  <action name="actionSetAnnoOptions">
+   <property name="text">
+    <string>&amp;Set Annotation Options</string>
+   </property>
+  </action>
+  <action name="actionShowSnippetMenu">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Show Snippet &amp;Menu</string>
+   </property>
+  </action>
+  <action name="actionExtractSnippets">
+   <property name="text">
+    <string>Extract Snippets</string>
+   </property>
+  </action>
+  <zorder>xmlDockWidget</zorder>
+ </widget>
+ <tabstops>
+  <tabstop>addImgButton</tabstop>
+  <tabstop>delImgButton</tabstop>
+  <tabstop>imgTreeWidget</tabstop>
+ </tabstops>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>

@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/add.png</file>
+        <file>resources/check.png</file>
+        <file>resources/remove.png</file>
+        <file>resources/folder_classic_opened.png</file>
+        <file>resources/save.png</file>
+        <file>resources/polygon.png</file>
+        <file>resources/rectangle.png</file>
+        <file>resources/zoom_in.png</file>
+        <file>resources/zoom_out.png</file>
+        <file>resources/rectangle2.png</file>
+        <file>resources/polygon_blue.png</file>
+        <file>resources/cursor_arrow.png</file>
+        <file>resources/documents_add.png</file>
+        <file>resources/documents_remove.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,15 @@
+#pragma once
+
+#include "svm_solver.h"
+
+namespace VlFeatWrapper
+{
+
+class SGDSolver : public SVMSolver
+{
+public:
+    SGDSolver(cv::Mat1f &data, cv::Mat1f &labels, double lambda);
+    ~SGDSolver();
+};
+
+}

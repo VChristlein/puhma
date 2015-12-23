@@ -1,0 +1,63 @@
+vole_module_name("vlfeat")
+vole_module_description("VLFeat Library (external library)")
+vole_module_variable("Vole_VLFeat")
+
+vole_add_required_dependencies("OPENCV" "BOOST" "BOOST_PROGRAM_OPTIONS")
+vole_add_required_modules()
+
+vole_compile_library(
+	"quickshift_demo.cpp" "quickshift_demo.h"
+)
+
+vole_add_command("qs_demo" "quickshift_demo.h" "quickshiftDemo")
+
+vole_compile_library(
+	"vl/aib"
+	"vl/array"
+	"vl/covdet"
+	"vl/dsift"
+	"vl/fisher"
+	"vl/generic"
+	"vl/getopt_long"
+	"vl/gmm"
+	"vl/heap-def"
+	"vl/heap"
+	"vl/heap-t"
+	"vl/hikmeans"
+	"vl/hog"
+	"vl/homkermap"
+	"vl/host"
+	"vl/ikmeans"
+	"vl/imop"
+	"vl/imopv"
+	"vl/imopv_sse2"
+	"vl/kdtree"
+	"vl/kmeans"
+	"vl/lbp"
+	"vl/liop"
+# This doesn't build for me	
+#	"vl/mathop_avx"
+	"vl/mathop"
+	"vl/mathop_sse2"
+	"vl/mser"
+	"vl/pgm"
+	"vl/qsort-def"
+	"vl/quickshift"
+	"vl/random"
+	"vl/rodrigues"
+	"vl/scalespace"
+	"vl/shuffle-def"
+	"vl/sift"
+	"vl/slic"
+	"vl/stringop"
+	"vl/svmdataset"
+	"vl/svm"
+	"vl/vlad"
+
+	"vole_quickshift.h"
+	"vole_quickshift.cpp"
+	"quickshift_config.h"
+	"quickshift_config.cpp"
+)
+
+vole_add_module()

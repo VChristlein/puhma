@@ -1,0 +1,13 @@
+#include "sgdsolver.h"
+
+
+VlFeatWrapper::SGDSolver::SGDSolver(cv::Mat1f &data, cv::Mat1f &labels, double lambda) : SVMSolver(VlSvmSolverSgd,
+                                                                                                   data,
+                                                                                                   labels,
+                                                                                                   lambda)
+{
+}
+
+VlFeatWrapper::SGDSolver::~SGDSolver()
+{
+}
